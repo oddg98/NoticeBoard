@@ -1,1 +1,35 @@
-<p>board works!</p>
+<div class="info-header">
+  <div class="user-info">
+    <span class="user-field"
+      >Logged in as: <a class="user-click">{{user}}</a></span
+    >
+    <a class="user-field sign-out" (click)="signOut()">Sign out</a>
+  </div>
+</div>
+<div class="write">
+  <button class="toggle-write" (click)="togglePostCreation()" *ngIf="!creatingPost">Add a post!</button>
+  <button class="toggle-write" (click)="togglePostCreation()" *ngIf="creatingPost">Cancel</button>
+  <div id="create-post-section" class="post-create hidden">
+    <input type="text" placeholder="Add a title (optional)" class="create-title" id="postTitle">
+    <textarea name="create-post" id="create-post" maxlength="500"></textarea>
+    <button type="button" class="submit-post" (click)="submitPost()">Submit</button>
+  </div>
+</div>
+<main class="board">
+  <section class="board__posts">
+    <!-- POSTS -->
+    <div class="post" *ngFor="let post of allPosts; index as i">
+      <header class="post__header">
+        <h2 class="post__title">{{post.postTitle}}</h2>
+        <h3 class="post__author">Posted by: {{post.postAuthor}}</h3>
+      </header>
+      <hr />
+      <article class="post__content">
+        <span class="post__id">#{{i}}</span>
+        <p class="post__text">
+          {{post.postContent}}
+        </p>
+      </article>
+    </div>
+  </section>
+</main>

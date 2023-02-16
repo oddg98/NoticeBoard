@@ -26,5 +26,8 @@ function loginValidation(body) {
   return schema.validate(body);
 }
 
+// Message Validation (TODO)
+function postValidation(body) {}
+
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;

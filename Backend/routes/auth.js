@@ -34,7 +34,7 @@ router.post("/register", async (req, res) => {
     // Save user
     try {
       const savedUser = await user.save();
-      res.send({ user: user._id });
+      res.send({ user: user._id, name: user.name });
     } catch (err) {
       res.status(400).send(err);
     }
@@ -65,10 +65,11 @@ router.post("/login", async (req, res) => {
         .status(400)
         .send({ errMsg: "Wrong email or password.", errCode: 1002 });
     // Login success
-    const token = jwt.sign({ _id: existingUser._id }, process.env.MASTER_KEY);
+    const token = jwt.sign({ _id: existingUser._id, name: existingUser.name }, process.env.MASTER_KEY);
     res.header('auth-token', token).send({
       msg: `Logged in succesfully!`,
-      token: token
+      token: token,
+      name: existingUser.name
     });
   }
 });
