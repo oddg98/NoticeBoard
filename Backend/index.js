@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 9001;
 
 // Cors Options
 const corsOptions = {
@@ -31,5 +31,5 @@ app.use("/api/board", boardRoute);
 
 // Init
 app.listen(PORT, () => {
-  console.log(`Server listening in port ${PORT}`);
+  console.log(`Server listening to port ${PORT}`);
 });
